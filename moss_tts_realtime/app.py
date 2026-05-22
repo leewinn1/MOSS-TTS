@@ -1152,7 +1152,7 @@ def _build_demo(
     with gr.Blocks(title="MossTTSRealtime") as demo:
         gr.Markdown("MossTTSRealtime demo")
         gr.Markdown("Note: The first run may take a while to load the model.")
-        gr.HTML(STREAM_PLAYER_HTML, js_on_load=STREAM_PLAYER_JS)
+        gr.HTML(STREAM_PLAYER_HTML)
 
         with gr.Row():
             with gr.Column():
@@ -1329,6 +1329,7 @@ def _build_demo(
             outputs=[run_btn, status, warmup_timer],
             queue=False,
             show_progress="hidden",
+            js="() => { " + STREAM_PLAYER_JS + " }",
         )
         warmup_timer.tick(
             _poll_warmup_state,
